@@ -1,36 +1,34 @@
 using System;
-class one_dim //класс одномерного массива
+public sealed class one_dim : Parent //класс одномерного массива
 {
     private int len_one_dim; //длина массива
     private int[] array;
-    private bool fill_rand = false;
+    private bool fill_rand {get; set;}
     public one_dim (int len_one_dim)
     {
         array = new int[len_one_dim];
 
-        Console.WriteLine("Заполнять массив рандомно? да или нет");
-        string ans = Console.ReadLine();
-            if (fill_rand)
+        if (fill_rand)
         {
-            one_dim_rand(len_one_dim);
+            Rand(len_one_dim);
         }
         else
         {
-            one_dim_manual(len_one_dim);
+            Manual(len_one_dim);
         }
+    public override Print();
     }
     
     
-    private void one_dim_rand (int len_one_dim)
+    private void Rand (int len_one_dim)
     {
         Random rnd = new Random();
         for (int i = 0; i<array.Length;i++)
         {
             array[i] = rnd.Next(-100,100);
         }
-        print();
     }
-    private void one_dim_manual(int len_one_dim)
+    private void Manual(int len_one_dim)
     {
         for (int i = 0; i<array.Length; i++)
             {
@@ -38,10 +36,9 @@ class one_dim //класс одномерного массива
                 int x = int.Parse(Console.ReadLine());
                 array[i] = x;
             }
-        print();
     }
 
-    public void average() //вычисление среднего арифметического 
+    public void Average() //вычисление среднего арифметического 
     {
         double sam = 0;
         foreach(int elem in array)
@@ -77,13 +74,6 @@ class one_dim //класс одномерного массива
                 Console.Write(kor_array[i] + ", ");
             }
             Console.WriteLine();
-        }
-    }
-    public void print()
-    {
-        foreach (int i in array)
-        {
-            Console.Write(i+", ");
         }
     }
 }

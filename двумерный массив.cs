@@ -1,4 +1,4 @@
-class two_dim
+sealed class two_dim
 {
     private int high_d2;
     private int len_d2;

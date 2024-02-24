@@ -1,12 +1,27 @@
 using System;
-
 static void Main()
 { 
+    Parent[] array = new Parent[3];
+
     dim_one();
 
     dim_two();
 
     dim_three();
+
+    array[0] = array1;
+    array[1] = array2;
+    array[2] = array3;
+
+    for (int i = 0; i < 3; i++)
+    {
+        Console.WriteLine($"Массив {array[i].GetType()}:");
+        arr[i].Print();
+        Console.WriteLine();
+        Console.WriteLine($"Среднее значение массива {array[i]}: {array[i].Average()}");
+        Console.WriteLine();
+    }
+
 }
 static void dim_one()
 {
@@ -33,7 +48,7 @@ static void dim_two()
 }
 static void dim_three()
 {
-     Console.WriteLine("Введите высоту массива");
+    Console.WriteLine("Введите высоту массива");
     int high_d3 = int.Parse(Console.ReadLine());
 
     Console.WriteLine("Введите длинe одномерных массивов");
