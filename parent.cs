@@ -1,3 +1,4 @@
+using System;
 abstract class Parent
 {
     protected static Random rnd = new Random();
@@ -6,11 +7,22 @@ abstract class Parent
     {
         this.fill_rand = fill_rand;
     }
-    public abstract void Rand();
+    protected virtual void ReCreate()
+    {
+        
+    }
+    private abstract void Rand();
 
-    public abstract void Manual();
-    
-    public abstract void Print();
-    
+    private abstract void Manual();
+
+    public virtual void Print()
+    {
+        foreach (int i in array)
+        {
+            Console.Write(i + ", ");
+        }
+    }
+
     public abstract double Average();
+
 }

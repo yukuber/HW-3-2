@@ -1,26 +1,16 @@
 using System;
-public sealed class one_dim : Parent //класс одномерного массива
-{
-    private int len_one_dim; //длина массива
-    private int[] array;
-    private bool fill_rand {get; set;}
-    public one_dim (int len_one_dim)
-    {
-        array = new int[len_one_dim];
 
-        if (fill_rand)
-        {
-            Rand(len_one_dim);
-        }
-        else
-        {
-            Manual(len_one_dim);
-        }
-    public override Print();
+class one_dim //класс одномерного массива
+{
+    private int[] array;
+    private static Random rand = new Random();
+    public one_dim (int len_one_dim, bool fill_rand)
+    {
+        ReCreate(len_one_dim, fill_rand);
     }
     
     
-    private void Rand (int len_one_dim)
+    private void one_dim_rand ()
     {
         Random rnd = new Random();
         for (int i = 0; i<array.Length;i++)
@@ -28,7 +18,7 @@ public sealed class one_dim : Parent //класс одномерного мас�
             array[i] = rnd.Next(-100,100);
         }
     }
-    private void Manual(int len_one_dim)
+    private void one_dim_manual()
     {
         for (int i = 0; i<array.Length; i++)
             {
@@ -37,45 +27,63 @@ public sealed class one_dim : Parent //класс одномерного мас�
                 array[i] = x;
             }
     }
-
-    public void Average() //вычисление среднего арифметического 
+    public void Print()
+    {
+        Print(array);
+    }
+    public void average() //вычисление среднего арифметического 
     {
         double sam = 0;
         foreach(int elem in array)
         {
             sam+=elem;
         }
-        Console.WriteLine("среднее арифм");
+        Console.WriteLine("среднее арифметическое");
         Console.WriteLine(sam/array.Length);
     }
         
-    public void pop100() //удаление всех чисел больше 100 по модулю
+    public int[] pop100() //удаление всех чисел больше 100 по модулю
     {
         Console.WriteLine("укороченный");
-        int kor_len = 0;
-        int j = 0;
         foreach(int elem in array)
         {
-            if (Math.Abs(elem)<=100)
-            {
-                kor_len ++;
-            }
+            kor_array[i] = Math.Abs(array[i]) < 100
+                ? array[i]
+                : int.MinValue;
+            Print(kor_array)
         }
-        int[] kor_array = new int [kor_len];
-        foreach(int l in array)
+    }
+
+    private static void Print(int[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
         {
-            if (Math.Abs(l) < 100)
+            if (array[i] == int.MinValue)
             {
-                kor_array[j] = l;
-                j ++;
-            }  
-            for (int i = 0; i< kor_array.Length;i++)
-            {
-                Console.Write(kor_array[i] + ", ");
+                continue;
             }
-            Console.WriteLine();
+            Console.Write($"{array[i]} ")
+        }
+        Console.WriteLine();            
+    }
+        
+    public int[] non_repeat()
+    {
+        int[] unique = array.Distinct().ToArray();
+        Print(unique);
+    }
+        
+    
+    public void ReCreate (int len_one_dim, bool fill_rand)
+    {
+        array = new int[len_one_dim];
+        if (fill_rand)
+        {
+            one_dim_rand();
+        }
+        else
+        {
+            one_dim_manual();
         }
     }
 }
-
-

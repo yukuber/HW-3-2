@@ -1,29 +1,22 @@
-sealed class two_dim
+using System;
+public sealed class two_dim : Parent
 {
-    private int high_d2;
-    private int len_d2;
     public int[,] array;
-    private bool fill_rand = false;
+    private bool fill_rand {get; set;}
     public two_dim(int high_d2, int len_d2)
     {
         array = new int[high_d2, len_d2];
 
-        Console.WriteLine("Заполнять массив рандомно? да или нет");
-        string ans = Console.ReadLine();
-        if (ans == "да")
-        {
-            fill_rand = true;
-        }
         if (fill_rand)
         {
-            d2_rand(high_d2, len_d2);
+            Rand(high_d2, len_d2);
         }
         else
         {
             d2_manual(high_d2, len_d2);
         }
     }
-    private void d2_rand(int high_d2, int len_d2)
+    private override void Rand(int high_d2, int len_d2)
     {
         Random rnd = new Random();
         for (int i = 0; i < array.GetLength(0); i++)
@@ -34,7 +27,7 @@ sealed class two_dim
             }
         }
     }
-    private void d2_manual(int high_d2, int len_d2)
+    private override void d2_manual(int high_d2, int len_d2)
     {
 
         for (int i = 0; i < high_d2; i++)
@@ -48,7 +41,7 @@ sealed class two_dim
 
     }
 
-    public void average_d2()
+    public override void average_d2()
     {
         int sam = 0;
         foreach (int elem in array)
