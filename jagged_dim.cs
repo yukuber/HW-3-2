@@ -9,9 +9,25 @@ class three_dim
         ReCreate(high_three_dim, fill_rand)
 
     }
-    private void three_dim_rand()
+
+    
+    protected override void ReCreate(int high_three_dim, bool fill_rand)
     {
-        Random rnd = new Random();
+        array3 = new int[high_three_dim][];
+
+        if (fill_rand)
+        {
+            three_dim_rand();
+        }
+        else
+        {
+            three_dim_manual();
+        }
+    }
+    
+    protected override void Random()
+    {
+        
         for (int i = 0; i < array3.Length; i++)
         {
             for (int j = 0; j < rnd.Next(1, 10); j++)
@@ -20,7 +36,7 @@ class three_dim
             }
         }
     }
-    private void three_dim_manual()
+    protected override void Manual()
     {
         for (int i = 0; i < array3.Length; i++)
         {
@@ -33,7 +49,7 @@ class three_dim
             }
         }
     }
-    public void average_three_dim()
+    public override void Average()
     {
         int sum = 0;
         for (int i = 0; i < array3.Length; i++)
@@ -78,18 +94,5 @@ class three_dim
             }
         }
 
-    }
-    public void ReCreate(int high_three_dim, bool fill_rand)
-    {
-        array3 = new int[high_three_dim][];
-
-        if (fill_rand)
-        {
-            three_dim_rand();
-        }
-        else
-        {
-            three_dim_manual();
-        }
     }
 }
