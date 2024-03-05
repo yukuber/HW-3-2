@@ -2,27 +2,29 @@ using System;
 abstract class Parent
 {
     protected static Random rnd = new Random();
-    protected bool fill_rand = false;
     protected Parent(bool fill_rand = false)
     {
         this.fill_rand = fill_rand;
     }
-    protected virtual void ReCreate()
-    {
-        
-    }
-    private abstract void Rand();
 
-    private abstract void Manual();
-
-    public virtual void Print()
-    {
-        foreach (int i in array)
+    public virtual void ReCreate(bool fill_rand = false)
         {
-            Console.Write(i + ", ");
+            if (fill_rand)
+            {
+                Manual();
+            }
+            else
+            {
+                Rand();
+            }
         }
-    }
 
+    protected abstract void Rand();
+
+    protected abstract void Manual();
+    
+    public abstract void Print();
+    
     public abstract double Average();
 
 }
