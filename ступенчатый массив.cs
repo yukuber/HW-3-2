@@ -1,25 +1,31 @@
-
 using System;
-public sealed class three_dim : Parent
+
+class three_dim : Parent
 {
     private int high_three_dim;
 
     private int[][] array3;
-    private bool fill_rand {get; set;}
     public three_dim(int high_three_dim)
     {
         array3 = new int[high_three_dim][];
 
+        Console.WriteLine("Заполнять массив рандомно? да или нет");
+        string ans = Console.ReadLine();
+        if (ans == "да")
+        {
+            fill_rand = true;
+        }
+
         if (fill_rand)
         {
-            Rand(high_three_dim);
+            three_dim_rand(high_three_dim);
         }
         else
         {
-            Manual(high_three_dim);
+            three_dim_manual(high_three_dim);
         }
     }
-    private override void Rand(int high_three_dim)
+    private void three_dim_rand(int high_three_dim)
     {       Random rnd = new Random();
             for (int i = 0; i < high_three_dim; i++)
             {
@@ -29,7 +35,7 @@ public sealed class three_dim : Parent
                 }
             }
         }
-       private override void Manual(int high_three_dim)
+       private void three_dim_manual(int high_three_dim)
         {
             for (int i = 0; i < high_three_dim ; i++)
             {
@@ -42,7 +48,7 @@ public sealed class three_dim : Parent
                 }    
             }
         }
-    public override void Average()
+    public void average_three_dim()
     {
         int sum = 0;
         for (int i = 0; i < high_three_dim; i++)
@@ -87,5 +93,3 @@ public sealed class three_dim : Parent
         
     }
 }
-
-
