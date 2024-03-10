@@ -1,8 +1,9 @@
 using System;
 abstract class Parent
 {
-    protected static Random rnd = new Random();
-    protected Parent(bool fill_rand = false)
+    protected bool fill_rand = false;
+    public static Random rnd = new Random();
+    protected Parent(bool fill_rand)
     {
         this.fill_rand = fill_rand;
     }

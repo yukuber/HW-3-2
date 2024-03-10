@@ -1,31 +1,21 @@
 using System;
 
-class two_dim
+class two_dim : Parent
 {
     private int[,] array2;
-private static Random rand = new Random();
 
-    public two_dim(int high_d2, int len_d2, bool fill_rand)
+    public two_dim(int high_d2, int len_d2, bool fill_rand = false) : base(fill_rand)
     {
-        ReCreate(high_d2, len_d2, fill_rand);
+        ReCreate(fill_rand);
+        Print();
     }
 
-    public void ReCreate(int high_d2, int len_d2, bool fill_rand)
+    public override void ReCreate(bool fill_rand)
     {
-        array2 = new int[high_d2, len_d2];
-
-        if (fill_rand)
-        {
-            d2_rand();
-        }
-        else
-        {
-            d2_manual();
-        }
+        base.ReCreate();
     }
-    private void d2_rand()
+    protected override void Rand()
     {
-        Random rnd = new Random();
         for (int i = 0; i < array2.GetLength(0); i++)
         {
             for (int j = 0; j < array2.GetLength(1); j++)
@@ -34,7 +24,7 @@ private static Random rand = new Random();
             }
         }
     }
-    private void d2_manual()
+    protected override void Manual()
     {
         for (int i = 0; i < array2.GetLength(0); i++)
         {
@@ -47,14 +37,14 @@ private static Random rand = new Random();
 
     }
 
-    public void average_d2()
+    public override double Average()
     {
         int sam = 0;
         foreach (int elem in array2)
         {
             sam += elem;
         }
-        Console.WriteLine($"средн арифм в двумерном массиве " + sam/array2.Length);
+        return sam/array2.Length;
     }
 
     public void obr_chet()
@@ -91,52 +81,26 @@ private static Random rand = new Random();
             }
         }
     }
-}
 
-    }
-
-    public void average_d2()
+    public override void Print()
     {
-        int sam = 0;
-        foreach (int elem in array)
-        {
-            sam += elem;
-        }
-        Console.WriteLine($"средн арифм в двумерном массиве " + sam);
+        Print(array2);
     }
-
-    public void obr_chet()
+    private static void Print(int[,] array2)
     {
-        for (int i = 0; i < high_d2; i++)
+        for (int i = 0; i<array2.GetLength(0); i++)
         {
-            if ((i + 1) % 2 == 0)
+            for (int j = 0; j <array2.GetLength(1);j++)
             {
-                for (int j = len_d2 - 1; j >= 0; j--)
+                if (array2[i,j] == int.MinValue)
                 {
-                    if (j == 0)
-                    {
-                        Console.WriteLine($"{array[i, j]}");
-                    }
-                    else
-                    {
-                        Console.Write($"{array[i, j]}");
-                    }
+                    continue;
                 }
+                Console.Write($"{array2[i,j]} ");            
             }
-            else
-            {
-                for (int j = 0; j < len_d2; j++)
-                {
-                    if (j == -1)
-                    {
-                        Console.WriteLine($"{array[i, j]}");
-                    }
-                    else
-                    {
-                        Console.Write($"{array[i, j]}");
-                    }
-                }
-            }
+            Console.WriteLine();            
         }
     }
 }
+
+   

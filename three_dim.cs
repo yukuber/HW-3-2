@@ -1,33 +1,20 @@
 using System;
-
-class three_dim
+class three_dim : Parent
 {
     private int[][] array3;
 
-    public three_dim(int high_three_dim, bool fill_rand)
+    public three_dim(int high_three_dim, bool fill_rand = false) : base(fill_rand)
     {
-        ReCreate(high_three_dim, fill_rand)
-
+        ReCreate(fill_rand);
     }
 
-    
-    protected override void ReCreate(int high_three_dim, bool fill_rand)
+    public override void ReCreate(bool fill_rand)
     {
-        array3 = new int[high_three_dim][];
-
-        if (fill_rand)
-        {
-            three_dim_rand();
-        }
-        else
-        {
-            three_dim_manual();
-        }
+        base.ReCreate();
     }
     
-    protected override void Random()
+    protected override void Rand()
     {
-        
         for (int i = 0; i < array3.Length; i++)
         {
             for (int j = 0; j < rnd.Next(1, 10); j++)
@@ -36,6 +23,7 @@ class three_dim
             }
         }
     }
+
     protected override void Manual()
     {
         for (int i = 0; i < array3.Length; i++)
@@ -49,17 +37,18 @@ class three_dim
             }
         }
     }
-    public override void Average()
+
+    public override double Average()
     {
-        int sum = 0;
+        int sam = 0;
         for (int i = 0; i < array3.Length; i++)
         {
             for (int j = 0; j < array3[i].Length; j++)
             {
-                sum += j;
+                sam += array3[i][j];
             }
         }
-        Console.WriteLine($"среднее значение в массиве {sum / array3.Length}");
+        return sam/array3.Length;
     }
 
     public void average_each_three_dim()
@@ -90,9 +79,28 @@ class three_dim
                 {
                     Console.Write(array3[i][j]);
                 }
-
             }
         }
+    }
 
+    public override void Print()
+    {
+        Print(array3);
+    }
+
+    private static void Print(int[][] array3)
+    {
+        for (int i = 0; i<array3.Length; i++)
+        {
+            for (int j = 0; j <array3[i].Length;j++)
+            {
+                if (array3[i][j] == int.MinValue)
+                {
+                    continue;
+                }
+                Console.Write($"{array3[i][j]} ");            
+            }
+            Console.WriteLine();            
+        }
     }
 }
